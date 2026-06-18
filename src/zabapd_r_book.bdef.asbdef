@@ -3,6 +3,7 @@ strict ( 2 );
 define behavior for ZABAPD_R_BOOK alias Book
 persistent table zabapd_book
 lock master
+authorization master ( global )
 etag master LastChangedAt
 {
   field ( numbering : managed, readonly ) BookUuid;

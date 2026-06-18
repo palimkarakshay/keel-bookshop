@@ -6,6 +6,8 @@ CLASS lhc_book DEFINITION INHERITING FROM cl_abap_behavior_handler.
         out_of_stock TYPE c LENGTH 2 VALUE 'O',
         discontinued TYPE c LENGTH 2 VALUE 'D',
       END OF status.
+    METHODS get_global_authorizations FOR GLOBAL AUTHORIZATION
+      IMPORTING REQUEST requested_authorizations FOR Book RESULT result.
     METHODS setDefaults FOR DETERMINE ON MODIFY
       IMPORTING keys FOR Book~setDefaults.
     METHODS validateRating FOR VALIDATE ON SAVE
@@ -21,6 +23,9 @@ CLASS lhc_book DEFINITION INHERITING FROM cl_abap_behavior_handler.
 ENDCLASS.
 
 CLASS lhc_book IMPLEMENTATION.
+  METHOD get_global_authorizations.
+  ENDMETHOD.
+
   METHOD setDefaults.
     READ ENTITIES OF zabapd_r_book IN LOCAL MODE
       ENTITY Book FIELDS ( Status Rating CurrencyCode )
